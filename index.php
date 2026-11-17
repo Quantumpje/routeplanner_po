@@ -1,13 +1,11 @@
 <?php
 
-require "db.php";
+require "./db.php";
+require "./algos/prepare_day.php";
 
 
 $db = connect_to_db();
 
-$result = $db->query("SELECT * FROM locaties");
-$locations = [];
-while ($row = $result->fetch_assoc()) { $locations[] = $row; }
+$locations = prepare_day($db, 2, "2026-11-6");
 
-echo " | ";
-foreach ($locations as $location) { echo $location["naam"] . " | "; }
+echo " | "; foreach ($locations as $location) { echo $location["naam"] . " | "; }
